@@ -13,7 +13,7 @@ class CommentList extends Component {
         toggleOpen: PropTypes.func.isRequired
     }
 
-    defaultProps = {
+    static defaultProps = {
         comments: []
     }
 
