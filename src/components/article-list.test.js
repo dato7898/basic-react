@@ -41,8 +41,8 @@ describe('ArticleList', () => {
     setTimeout(() => {
       try {
         wrapper.simulate('transitionEnd')
-        expect(wrapper.find('.test__article--body').length).toEqual(0)
         
+        expect(wrapper.find('.test__article--body').length).toEqual(0)
         done()
       } catch(err) {
         done.fail(err)
