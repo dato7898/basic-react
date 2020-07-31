@@ -1,7 +1,18 @@
 import React, { PureComponent } from 'react'
-import CommentList from './comment-list'
+import PropTypes from 'prop-types'
+import CSSTransition from 'react-addons-css-transition-group'
+import CommentList from '../comment-list'
+import './style.css'
 
 class Article extends PureComponent {
+	static propTypes = {
+		article: PropTypes.shape({
+				title: PropTypes.string.isRequired,
+				text: PropTypes.string
+		}).isRequired,
+		isOpen: PropTypes.bool,
+		toggleOpen: PropTypes.func.isRequired
+	}
 
 	state = {
 		hasError: false
@@ -24,7 +35,13 @@ class Article extends PureComponent {
 						{isOpen ? 'close' : 'open'}
 					</button>
 				</h3>
-				{this.body}
+				<CSSTransition 
+					transitionName="article"
+					transitionEnterTimeout={500}
+					transitionLeaveTimeout={300}
+				>
+					{this.body}
+				</CSSTransition>
 			</div>
 		)
 	}
