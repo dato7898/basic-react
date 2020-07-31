@@ -1,10 +1,7 @@
 import React from 'react'
-import Enzyme, { render, shallow, mount } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+import { render, shallow, mount } from 'enzyme'
 import ArticleListWithAccordion, { ArticleList } from './article-list'
 import articles from '../fixtures'
-
-Enzyme.configure({ adapter: new Adapter() })
 
 describe('ArticleList', () => {
   it('should render article list', () => {
@@ -30,5 +27,26 @@ describe('ArticleList', () => {
   it('should trigger data fetching on mount', (done) => {
     mount(<ArticleListWithAccordion articles = {[]} toggleOpenItem = {() => { }} fetchData={done} />)
     
+  })
+
+  it('should close an article', (done) => {
+    const wrapper = mount(<ArticleListWithAccordion articles={articles} />)
+    expect(wrapper.find('.test__article--body').length).toEqual(0)
+
+    wrapper.find('.test__article--btn').at(0).simulate('click')
+    expect(wrapper.find('.test__article--body').length).toEqual(1)
+
+    wrapper.find('.test__article--btn').at(0).simulate('click')
+
+    setTimeout(() => {
+      try {
+        wrapper.simulate('transitionEnd')
+        expect(wrapper.find('.test__article--body').length).toEqual(0)
+        
+        done()
+      } catch(err) {
+        done.fail(err)
+      }
+    }, 800)
   })
 })

@@ -7,8 +7,8 @@ import './style.css'
 class Article extends PureComponent {
 	static propTypes = {
 		article: PropTypes.shape({
-				title: PropTypes.string.isRequired,
-				text: PropTypes.string
+			title: PropTypes.string.isRequired,
+			text: PropTypes.string
 		}).isRequired,
 		isOpen: PropTypes.bool,
 		toggleOpen: PropTypes.func.isRequired
@@ -35,7 +35,7 @@ class Article extends PureComponent {
 						{isOpen ? 'close' : 'open'}
 					</button>
 				</h3>
-				<CSSTransition 
+				<CSSTransition
 					transitionName="article"
 					transitionEnterTimeout={500}
 					transitionLeaveTimeout={300}

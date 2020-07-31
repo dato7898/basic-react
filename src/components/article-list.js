@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Article from './article'
 import accordion from '../decorators/accordion'
 
 export class ArticleList extends Component {
+	static propTypes = {
+		articles: PropTypes.array.isRequired,
+		fetchData: PropTypes.func,
+		openItemId: PropTypes.string,
+		toggleOpenItem: PropTypes.func
+	}
+
 	render() {
 		return (
 			<ul>
@@ -25,7 +33,7 @@ export class ArticleList extends Component {
 	}
 
 	componentDidMount() {
-		const {fetchData} = this.props
+		const { fetchData } = this.props
 		fetchData && fetchData()
 	}
 }
