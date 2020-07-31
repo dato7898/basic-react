@@ -1,8 +1,22 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types'
 import toggleOpen from '../decorators/toggleOpen'
 import Comment from './comment'
 
 class CommentList extends Component {
+    static propTypes = {
+        article: PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            text: PropTypes.string
+        }).isRequired,
+        isOpen: PropTypes.bool,
+        toggleOpen: PropTypes.func.isRequired
+    }
+
+    defaultProps = {
+        comments: []
+    }
+
     render() {
         const { isOpen, toggleOpen } = this.props
         const text = isOpen ? 'hide comments' : 'show comments'
@@ -18,7 +32,7 @@ class CommentList extends Component {
         const { comments, isOpen } = this.props
         if (!isOpen) return null
 
-        const body = comments.length ? (
+        const body = (comments && comments.length) ? (
             <ul>
                 {comments.map(comment => (
                     <li key={comment.id}>
@@ -27,11 +41,11 @@ class CommentList extends Component {
                 ))}
             </ul>
         ) : (
-            <h3>No comments yet</h3>
-        )
+                <h3>No comments yet</h3>
+            )
 
         return <div>{body}</div>
-	}
+    }
 }
 
 export default toggleOpen(CommentList)

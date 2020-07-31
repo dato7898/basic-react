@@ -9,7 +9,7 @@ class UserForm extends React.Component {
         return (
             <div>
                 Username:
-                <input value = {this.state.username} onChange = {this.handleUserChange} />
+                <input value={this.state.username} onChange={this.handleUserChange} />
             </div>
         )
     }

@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import { Component } from 'react'
 import DateRange from './date-range'
 import SelectFilter from './select'
 import React from 'react'

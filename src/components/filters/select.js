@@ -2,18 +2,18 @@ import React, { Component } from 'react'
 import Select from 'react-select'
 
 class SelectFilter extends Component {
-    state = {
-		openItem: null
-	}
+  state = {
+    openItem: null
+  }
 
-  handleChange = openItem => this.setState({openItem})
+  handleChange = openItem => this.setState({ openItem })
 
   get options() {
     return this.props.articles.map(article => ({
-        label: article.title,
-        value: article.id
+      label: article.title,
+      value: article.id
     }))
-}
+  }
 
   render() {
     return (

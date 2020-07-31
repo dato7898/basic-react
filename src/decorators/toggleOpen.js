@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default (OriginalComponent) => 
+export default (OriginalComponent) =>
     class ToggleOpen extends React.Component {
         state = {
             isOpen: false
@@ -10,7 +10,7 @@ export default (OriginalComponent) =>
             this.setState(state => ({
                 isOpen: !state.isOpen
             }))
-        
+
         render() {
             return (
                 <OriginalComponent

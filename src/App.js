@@ -10,7 +10,7 @@ class App extends Component {
 			<div>
 				<UserForm />
 				<Filters articles={articles} />
-				<ArticleList articles = {articles} />
+				<ArticleList articles={articles} />
 			</div>
 		)
 	}
