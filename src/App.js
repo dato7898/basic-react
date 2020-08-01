@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ArticleList from './components/article-list'
-import articles from './fixtures'
 import UserForm from './components/user-form'
 import Filters from './components/filters/index'
 import Counter from './components/counter'
