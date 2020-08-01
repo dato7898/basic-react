@@ -11,7 +11,7 @@ const composeEnhancers =
     : compose
 
 const enhancer = composeEnhancers(
-  applyMiddleware(logger, randomId)
+  applyMiddleware(randomId, logger)
   // other store enhancers if any
 )
 

@@ -1,25 +1,28 @@
+import { Record } from 'immutable'
 import { DELETE_ARTICLE, ADD_COMMENT } from '../constants'
 import { normalizedArticles as defaultArticles } from '../fixtures'
 import { arrToMap } from './utils'
 
-export default (articles = arrToMap(defaultArticles) , action) => {
+const ArticleRecord = Record({
+  title: null,
+  id: null,
+  text: null,
+  date: null,
+  comments: []
+})
+
+export default (
+  articles = arrToMap(defaultArticles, ArticleRecord), 
+  action
+) => {
   const { type, payload, randomId } = action
 
   switch(type) {
     case DELETE_ARTICLE:
-      const articlesCopy = { ...articles }
-      delete articlesCopy[payload.id]
-      return articlesCopy
+      articles.delete(payload.id)
 
     case ADD_COMMENT:
-      const article = articles[payload.articleId]
-      return {
-        ...articles,
-        [payload.articleId]: {
-          ...article,
-          comments: (article.comments || []).concat(randomId)
-        }
-      }
+      return articles.updateIn([payload.articleId, 'comments'], comments => comments.concat(randomId))
       
     default:
       return articles
