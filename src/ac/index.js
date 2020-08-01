@@ -5,7 +5,10 @@ import {
   CHANGE_SELECTION,
   ADD_COMMENT,
   LOAD_ALL_ARTICLES,
-  LOAD_ARTICLE
+  LOAD_ARTICLE,
+  START,
+  SUCCESS,
+  FAIL
 } from '../constants'
 
 export function increment() {
@@ -51,9 +54,27 @@ export function loadAllArticles(callAPI) {
 }
 
 export function loadArticleById(id) {
-  return {
-    type: LOAD_ARTICLE,
-    payload: { id },
-    callAPI: `/api/article/${id}`
+  return (dispatch) => {
+    dispatch({
+      type: LOAD_ARTICLE + START,
+      payload: { id }
+    })
+
+    fetch(`/api/article/${id}`)
+      .then((res) => res.json())
+      .then((response) =>
+        dispatch({
+          type: LOAD_ARTICLE + SUCCESS,
+          payload: { id },
+          response
+        })
+      )
+      .catch((error) =>
+        dispatch({
+          type: LOAD_ARTICLE + FAIL,
+          payload: { id },
+          error
+        })
+      )
   }
 }

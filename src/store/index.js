@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
 import reducer from '../reducer'
 import logger from '../middlewares/logger'
 import randomId from '../middlewares/randomId'
@@ -12,7 +13,7 @@ const composeEnhancers =
     : compose
 
 const enhancer = composeEnhancers(
-  applyMiddleware(randomId, api, logger)
+  applyMiddleware(thunk, randomId, api, logger)
   // other store enhancers if any
 )
 
