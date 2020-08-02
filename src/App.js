@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, NavLink, Switch  } from 'react-router-dom'
+import { Route, NavLink, Switch, Redirect } from 'react-router-dom'
 import ArticlesPage from './components/routes/articles'
 import UserForm from './components/user-form'
 import Filters from './components/filters/index'
@@ -34,6 +34,7 @@ class App extends Component {
           </div>
 				</div>
 				<Switch>
+					<Redirect from="/" to="/articles" exact />
 					<Route path="/counter" component={Counter} />
 					<Route path="/filters" component={Filters} />
 					<Route
