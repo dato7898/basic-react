@@ -7,6 +7,7 @@ import './style.css'
 import { deleteArticle, loadArticleById } from '../../ac'
 import Loader from '../common/loader'
 import { articleSelector } from '../../selectors'
+import i18n from '../i18n'
 
 class Article extends PureComponent {
 	static propTypes = {
@@ -37,16 +38,16 @@ class Article extends PureComponent {
 	}
 
 	render() {
-		const { article, isOpen } = this.props
+		const { article, isOpen, t } = this.props
 		if (!article) return null
 		return (
 			<div>
 				<h3>
 					{article.title}
 					<button onClick={this.handleClick} className="test__article--btn">
-						{isOpen ? 'close' : 'open'}
+						{t(isOpen ? 'close' : 'open')}
 					</button>
-					<button onClick={this.handleDelete}>delete me</button>
+					<button onClick={this.handleDelete}>{t('delete me')}</button>
 				</h3>
 				<CSSTransition
 					transitionName="article"
@@ -86,4 +87,4 @@ export default connect(
     article: articleSelector(state, props)
   }),
 	{ deleteArticle, loadArticleById }
-)(Article)
+)(i18n(Article))
