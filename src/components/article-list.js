@@ -41,10 +41,9 @@ export default connect(
 		console.log('---', 'articles connect')
 		return {
 			articles: filtratedArticles(state),
-			loading: articlesLoadingSelector(state)
+			loading: articlesLoadingSelector(state),
+			router: state.router
 		}
 	},
-	{ fetchData: loadAllArticles },
-	null,
-	{ pure: false }
+	{ fetchData: loadAllArticles }
 )(ArticleList)
