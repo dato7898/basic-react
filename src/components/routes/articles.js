@@ -7,6 +7,7 @@ class ArticlesPage extends Component {
   static propTypes = {}
 
   render() {
+    console.log('---', 'articles list match:', this.props.match)
     return (
       <div>
         <ArticleList />
