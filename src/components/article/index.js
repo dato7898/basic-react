@@ -38,6 +38,7 @@ class Article extends PureComponent {
 
 	render() {
 		const { article, isOpen } = this.props
+		if (!article) return null
 		return (
 			<div>
 				<h3>
