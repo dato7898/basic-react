@@ -44,5 +44,7 @@ export default connect(
 			loading: articlesLoadingSelector(state)
 		}
 	},
-	{ fetchData: loadAllArticles }
+	{ fetchData: loadAllArticles },
+	null,
+	{ pure: false }
 )(ArticleList)
