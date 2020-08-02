@@ -35,6 +35,7 @@ class App extends Component {
             render={() => <h1>New Article Page</h1>}
           />
 					<Route path="/articles" component={ArticlesPage} />
+					<Route path="*" render={() => <h1>Not Found Page</h1>} />
 				</Switch>
 			</div>
 		)
