@@ -6,13 +6,14 @@ import CommentList from '../comment-list'
 import './style.css'
 import { deleteArticle, loadArticleById } from '../../ac'
 import Loader from '../common/loader'
+import { articleSelector } from '../../selectors'
 
 class Article extends PureComponent {
 	static propTypes = {
 		article: PropTypes.shape({
 			title: PropTypes.string,
 			text: PropTypes.string
-		}).isRequired,
+		}),
 		isOpen: PropTypes.bool,
 		toggleOpen: PropTypes.func.isRequired
 	}
@@ -28,10 +29,10 @@ class Article extends PureComponent {
 		})
 	}
 
-	componentDidUpdate(oldProps) {
-		const { isOpen, article, loadArticleById } = this.props
-		if (!oldProps.isOpen && isOpen && !article.text) {
-			loadArticleById(article.id)
+	componentDidMount() {
+		const { article, id, loadArticleById } = this.props
+		if (!article || !article.text) {
+			loadArticleById(id)
 		}
 	}
 
@@ -80,6 +81,8 @@ class Article extends PureComponent {
 }
 
 export default connect(
-	null,
+	(state, props) => ({
+    article: articleSelector(state, props)
+  }),
 	{ deleteArticle, loadArticleById }
 )(Article)

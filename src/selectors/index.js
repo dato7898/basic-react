@@ -12,6 +12,12 @@ export const articlesListSelector = createSelector(
   (articlesMap) => articlesMap.valueSeq().toArray()
 )
 
+export const articleSelector = createSelector(
+  articlesMapSelector,
+  idSelector,
+  (articles, id) => articles.get(id)
+)
+
 export const filtratedArticles = createSelector(
   articlesListSelector,
   selectedSelector,
